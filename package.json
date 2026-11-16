@@ -1,0 +1,72 @@
+{
+  "name": "xanout",
+  "version": "1.0.2",
+  "description": "Tiny Request/Response router with middleware, cookies, headers, static files and a global context. Server-only: Node, Bun and Deno, with a universal request converter for Express, Fastify, Koa, Hono and more.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./http": {
+      "types": "./dist/http/index.d.ts",
+      "import": "./dist/http/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "watch": "tsc --watch",
+    "dev": "tsx watch server.ts",
+    "build": "rimraf dist && tsc -p tsconfig.json",
+    "test": "tsx test/middleware.order.test.ts && tsx test/router.test.ts && tsx test/static.test.ts && tsx test/context.test.ts && tsx test/mount.test.ts && tsx test/cookie.test.ts && tsx test/response.test.ts && tsx test/request.test.ts && tsx test/frameworks.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "keywords": [
+    "router",
+    "fetch",
+    "request",
+    "response",
+    "middleware",
+    "static",
+    "cookies",
+    "bun",
+    "deno",
+    "express"
+  ],
+  "author": "Naxrul Ahmed (https://github.com/devnax)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xanoute/xanoute.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xanoute/xanoute/issues"
+  },
+  "homepage": "https://github.com/xanoute/xanoute#readme",
+  "dependencies": {
+    "regexparam": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "express": "^5.3.0",
+    "fastify": "^5.12.8",
+    "hono": "^4.13.18",
+    "koa": "^3.3.0",
+    "rimraf": "^5.0.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
