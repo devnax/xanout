@@ -1,6 +1,6 @@
 {
   "name": "xanout",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "description": "Tiny Request/Response router with middleware, cookies, headers, static files and a global context. Server-only: Node, Bun and Deno, with a universal request converter for Express, Fastify, Koa, Hono and more.",
   "type": "module",
   "main": "./dist/index.js",
