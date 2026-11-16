@@ -1,5 +1,7 @@
 # xanout
 
+[Website](https://xanout.devnax.com) · [npm](https://www.npmjs.com/package/xanout)
+
 Tiny router for the web-standard `Request` / `Response` API. Middleware, params, cookies, response headers, static files and a request-scoped context, in one small package. Server-only: runs on Node 18+, Bun and Deno (Cloudflare Workers with `nodejs_compat`).
 
 - One dependency: [`regexparam`](https://github.com/lukeed/regexparam)
