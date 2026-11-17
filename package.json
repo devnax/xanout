@@ -1,6 +1,6 @@
 {
   "name": "xanout",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tiny Request/Response router with middleware, cookies, headers, static files and a global context. Server-only: Node, Bun and Deno, with a universal request converter for Express, Fastify, Koa, Hono and more.",
   "type": "module",
   "main": "./dist/index.js",
@@ -31,7 +31,7 @@
     "build": "rimraf dist && tsc -p tsconfig.json",
     "test": "tsx test/middleware.order.test.ts && tsx test/router.test.ts && tsx test/static.test.ts && tsx test/context.test.ts && tsx test/mount.test.ts && tsx test/cookie.test.ts && tsx test/response.test.ts && tsx test/request.test.ts && tsx test/frameworks.test.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "router",

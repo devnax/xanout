@@ -1,6 +1,6 @@
 /**
- * Merge ctx.headers() and the cookies queued by ctx.cookies() into the final Response.
- * Context headers win over same-named headers on the response.
+ * Merge the response headers set with ctx.headers and the cookies queued with ctx.cookies
+ * into the final Response. ctx.headers wins over same-named headers on the response.
  */
 export function mergeIntoResponse(
   res: Response,

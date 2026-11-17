@@ -4,6 +4,12 @@ import { ANY, type Dispatch, type Layer } from "./types.js";
 
 export function createDispatch(layers: Layer[]): Dispatch {
   const dispatch: Dispatch = (ctx, path, base, baseParams, tail) => {
+    const setParams = (params: Record<string, string>) => {
+      (ctx as Context & { params: Map<string, string> }).params = new Map(
+        Object.entries(params),
+      );
+    };
+
     const run = async (i: number): Promise<Response | undefined> => {
       for (; i < layers.length; i++) {
         const l = layers[i];
@@ -35,7 +41,7 @@ export function createDispatch(layers: Layer[]): Dispatch {
           if (!rest.startsWith("/")) rest = "/" + rest;
           ctx.pathname = rest;
           ctx.basePath = base + path.slice(0, consumed);
-          ctx.params = params;
+          setParams(params);
           const out = await l.staticHandler();
           if (out instanceof Response) return out;
           continue;
@@ -44,7 +50,7 @@ export function createDispatch(layers: Layer[]): Dispatch {
         const enter = () => {
           ctx.pathname = path;
           ctx.basePath = base;
-          ctx.params = params;
+          setParams(params);
         };
 
         const idx = i;

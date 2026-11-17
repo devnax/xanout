@@ -1,6 +1,7 @@
 import { createCookies, type CookieJar } from "../cookies/index.js";
 import { mergeIntoResponse } from "./finalize.js";
-import type { Cookies, ReplyInit } from "../shared/types.js";
+import { createHeaders, type HeaderJarInternal } from "./headers.js";
+import type { Cookies, HeaderJar, ReplyInit } from "../shared/types.js";
 
 const JSON_TYPE = "application/json; charset=utf-8";
 const NO_BODY = new Set([204, 205, 304]);
@@ -13,13 +14,13 @@ export class Context {
   readonly url: URL;
   readonly query: URLSearchParams;
   readonly states: Map<string, unknown> = new Map();
-  readonly headers: Headers = new Headers();
+  readonly headers: HeaderJar;
   readonly cookies: Cookies;
+  readonly params: Map<string, string> = new Map();
   readonly #jar: CookieJar;
-  isWebRequest = true;
+  readonly #headers: HeaderJarInternal;
   pathname: string;
   basePath = "";
-  params: Record<string, string> = {};
 
   constructor(request: Request) {
     this.request = request;
@@ -28,7 +29,9 @@ export class Context {
     this.query = this.url.searchParams;
     this.pathname = this.url.pathname;
     this.#jar = createCookies(request.headers.get("cookie"));
+    this.#headers = createHeaders(request.headers);
     this.cookies = this.#jar;
+    this.headers = this.#headers;
   }
 
   /** JSON response. `init` is a status code or a ResponseInit. Default status 200. */
@@ -73,7 +76,7 @@ export class Context {
 
   /** @internal Merge `headers` and queued cookies into the final response. */
   finalize(res: Response): Response {
-    return mergeIntoResponse(res, this.headers, this.#jar._out());
+    return mergeIntoResponse(res, this.#headers._out(), this.#jar._out());
   }
 
   #reply(
