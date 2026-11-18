@@ -1,4 +1,4 @@
-import { createCookies, type CookieJar } from "../cookies/index.js";
+import { createCookies, type CookieJar } from "../cookie/index.js";
 import { mergeIntoResponse } from "./finalize.js";
 import { createHeaders, type HeaderJarInternal } from "./headers.js";
 import type { Cookies, HeaderJar, ReplyInit } from "../shared/types.js";
