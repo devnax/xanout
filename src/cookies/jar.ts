@@ -1,6 +1,6 @@
-import type { CookieOptions, Cookies } from "../shared/types.js";
 import { parseCookie } from "./parse.js";
 import { serializeCookie } from "./serialize.js";
+import { CookieOptions, Cookies } from "./types.js";
 
 export type CookieJar = Cookies & {
   /** Set-Cookie header values queued during this request (internal). */
@@ -20,9 +20,7 @@ export function createCookies(header: string | null): CookieJar {
     all: () => {
       const cookies = { ...read() };
       for (const [name, value] of view)
-        value === undefined
-          ? delete cookies[name]
-          : (cookies[name] = value);
+        value === undefined ? delete cookies[name] : (cookies[name] = value);
       return cookies;
     },
     set: (name, value, options = {}) => (

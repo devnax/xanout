@@ -2,7 +2,7 @@ import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import { extname, join, resolve, sep } from "node:path";
 import { Readable } from "node:stream";
-import type { Context } from "../context/context.js";
+import type { Context } from "../../context/context.js";
 import { MIME } from "./mime.js";
 
 interface ServeFileOptions {
@@ -23,7 +23,10 @@ export async function serveFile(
     return undefined;
   }
   if (rel.includes("\0")) return undefined;
-  if (!options.dotfiles && rel.split(/[\\/]/).some((seg) => seg.startsWith(".")))
+  if (
+    !options.dotfiles &&
+    rel.split(/[\\/]/).some((seg) => seg.startsWith("."))
+  )
     return undefined;
 
   const root = resolve(options.dir);

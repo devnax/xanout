@@ -1,4 +1,4 @@
-import type { HeaderJar } from "../shared/types.js";
+import { HeaderJar } from "./types.js";
 
 export type HeaderJarInternal = HeaderJar & {
   /** Response headers queued during this request (internal). */

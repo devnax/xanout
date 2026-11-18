@@ -1,4 +1,4 @@
-import type { StaticConfig } from "../shared/types.js";
+import { StaticConfig } from "../types.js";
 
 export function cacheControlHeader(options: StaticConfig): string {
   const cc: string[] = [];

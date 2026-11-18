@@ -1,5 +1,5 @@
-import { currentContext } from "../context/store.js";
-import type { StaticConfig, StaticHandler } from "../shared/types.js";
+import { currentContext } from "../../context/store.js";
+import type { StaticConfig, StaticHandler } from "../types.js";
 import { cacheControlHeader } from "./cache-control.js";
 import { serveFile } from "./serve-file.js";
 

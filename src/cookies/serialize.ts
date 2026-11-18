@@ -1,5 +1,4 @@
-import type { CookieOptions } from "../shared/types.js";
-
+import type { CookieOptions } from "./types.js";
 const TOKEN = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
 const UNSAFE_ATTR = /[;\r\n]/;
 

@@ -1,6 +1,5 @@
 import type { Context } from "../context/context.js";
-import type { Next } from "../shared/types.js";
-import { ANY, type Dispatch, type Layer } from "./types.js";
+import { ANY, type Dispatch, type Layer, type Next } from "./types.js";
 
 export function createDispatch(layers: Layer[]): Dispatch {
   const dispatch: Dispatch = (ctx, path, base, baseParams, tail) => {

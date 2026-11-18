@@ -1,19 +1,19 @@
 import { parse } from "regexparam";
 import { Context } from "../context/context.js";
 import { currentContext, runInContext } from "../context/store.js";
-import { createStatic } from "../static/index.js";
-import type { Handler, StaticConfig, StaticHandler } from "../shared/types.js";
-import { isWebRequest } from "../shared/utils.js";
+import { createStatic } from "./static/index.js";
+import { isWebRequest } from "./utils.js";
 import { createDispatch } from "./dispatch.js";
 import {
   ANY,
   DISPATCH,
+  Handler,
+  Router,
+  StaticConfig,
+  StaticHandler,
   type Dispatch,
   type Layer,
-  type RouterInstance,
 } from "./types.js";
-
-export interface Router extends RouterInstance {}
 
 export function Router(): Router {
   const layers: Layer[] = [];

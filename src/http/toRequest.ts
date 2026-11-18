@@ -1,6 +1,6 @@
 import { Readable } from "node:stream";
 import type { IncomingMessage } from "node:http";
-import { isWebRequest } from "../shared/utils.js";
+import { isWebRequest } from "../router/utils.js";
 
 export interface ToRequestOptions {
   /** Override the request origin. */

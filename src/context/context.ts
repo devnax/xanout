@@ -1,7 +1,9 @@
-import { createCookies, type CookieJar } from "../cookie/index.js";
+import { createCookies, type CookieJar } from "../cookies/index.js";
 import { mergeIntoResponse } from "./finalize.js";
 import { createHeaders, type HeaderJarInternal } from "./headers.js";
-import type { Cookies, HeaderJar, ReplyInit } from "../shared/types.js";
+import { Cookies } from "../cookies/types.js";
+import { HeaderJar } from "./types.js";
+import { ReplyInit } from "../router/types.js";
 
 const JSON_TYPE = "application/json; charset=utf-8";
 const NO_BODY = new Set([204, 205, 304]);
