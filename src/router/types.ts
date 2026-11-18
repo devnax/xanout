@@ -75,25 +75,25 @@ export type Dispatch = (
 export const DISPATCH = Symbol.for("xanout.dispatch");
 export const ANY = /^\/?.*$/;
 
-export interface Router {
+export interface RouterInstance {
   /** Middleware, or mount another Router at the root. */
-  use(handler: Handler | Router): Router;
+  use(handler: Handler | RouterInstance): RouterInstance;
   /** Middleware for a path prefix, or mount a Router under it (prefix is stripped for the sub-router). */
-  use(path: string, handler: Handler | Router): Router;
-  get(path: string, handler: Handler | Router): Router;
-  post(path: string, handler: Handler | Router): Router;
-  put(path: string, handler: Handler | Router): Router;
-  patch(path: string, handler: Handler | Router): Router;
-  delete(path: string, handler: Handler | Router): Router;
-  head(path: string, handler: Handler | Router): Router;
-  options(path: string, handler: Handler | Router): Router;
-  all(path: string, handler: Handler | Router): Router;
+  use(path: string, handler: Handler | RouterInstance): RouterInstance;
+  get(path: string, handler: Handler | RouterInstance): RouterInstance;
+  post(path: string, handler: Handler | RouterInstance): RouterInstance;
+  put(path: string, handler: Handler | RouterInstance): RouterInstance;
+  patch(path: string, handler: Handler | RouterInstance): RouterInstance;
+  delete(path: string, handler: Handler | RouterInstance): RouterInstance;
+  head(path: string, handler: Handler | RouterInstance): RouterInstance;
+  options(path: string, handler: Handler | RouterInstance): RouterInstance;
+  all(path: string, handler: Handler | RouterInstance): RouterInstance;
   /** Serve the files in `config.dir` at a URL path ("/" for the root). */
-  static(path: string, config: StaticConfig): Router;
+  static(path: string, config: StaticConfig): RouterInstance;
   /** Custom static handler at a URL path. Return a Response, or undefined to continue. No `next`. */
-  static(path: string, handler: StaticHandler): Router;
+  static(path: string, handler: StaticHandler): RouterInstance;
   /** Custom static handler for every path. Return a Response, or undefined to continue. No `next`. */
-  static(handler: StaticHandler): Router;
+  static(handler: StaticHandler): RouterInstance;
   /** Context of the request currently being handled (safe under concurrency). */
   context(): Context;
   /**

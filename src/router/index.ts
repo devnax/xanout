@@ -8,14 +8,14 @@ import {
   ANY,
   DISPATCH,
   Handler,
-  Router,
+  type RouterInstance,
   StaticConfig,
   StaticHandler,
   type Dispatch,
   type Layer,
 } from "./types.js";
 
-export function Router(): Router {
+export function Router() {
   const layers: Layer[] = [];
   // Order of calls: static first, then use, then everything else.
   // layers: [static | middleware | use-mounted routers | routes]
@@ -26,7 +26,7 @@ export function Router(): Router {
   const add = (
     method: string | null,
     path: string | null,
-    handler: Handler | Router,
+    handler: Handler | RouterInstance,
     loose: boolean,
   ) => {
     const mount: Dispatch | undefined =
@@ -57,19 +57,23 @@ export function Router(): Router {
     else layers.push(layer);
   };
 
-  const router = {} as Router;
+  const router = {} as RouterInstance;
 
-  router.use = ((a: string | Handler | Router, b?: Handler | Router) => {
+  router.use = ((
+    a: string | Handler | RouterInstance,
+    b?: Handler | RouterInstance,
+  ) => {
     typeof a === "string"
-      ? add(null, a, b as Handler | Router, true)
+      ? add(null, a, b as Handler | RouterInstance, true)
       : add(null, null, a, true);
     return router;
-  }) as Router["use"];
+  }) as RouterInstance["use"];
 
-  const verb = (m: string) => (path: string, handler: Handler | Router) => {
-    add(m, path, handler, false);
-    return router;
-  };
+  const verb =
+    (m: string) => (path: string, handler: Handler | RouterInstance) => {
+      add(m, path, handler, false);
+      return router;
+    };
   router.get = verb("GET");
   router.post = verb("POST");
   router.put = verb("PUT");
@@ -114,7 +118,7 @@ export function Router(): Router {
       staticHandler,
     });
     return router;
-  }) as Router["static"];
+  }) as RouterInstance["static"];
 
   router.context = currentContext;
 
