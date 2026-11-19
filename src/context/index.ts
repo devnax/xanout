@@ -10,7 +10,7 @@ const NO_BODY = new Set([204, 205, 304]);
 const REDIRECTS = new Set([301, 302, 303, 307, 308]);
 
 /** Everything about the request being handled. Get it anywhere with `route.context()`. */
-export class Context {
+export default class Context {
   readonly request: Request;
   readonly method: string;
   readonly url: URL;

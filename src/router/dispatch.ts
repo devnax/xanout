@@ -1,4 +1,4 @@
-import type { Context } from "../context/context.js";
+import type Context from "../context/index.js";
 import { ANY, type Dispatch, type Layer, type Next } from "./types.js";
 
 export function createDispatch(layers: Layer[]): Dispatch {

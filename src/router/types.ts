@@ -1,4 +1,4 @@
-import type { Context } from "../context/context.js";
+import type Context from "../context/index.js";
 
 export type Method =
   | "GET"

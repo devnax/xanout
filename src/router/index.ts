@@ -1,5 +1,5 @@
 import { parse } from "regexparam";
-import { Context } from "../context/context.js";
+import Context from "../context/index.js";
 import { currentContext, runInContext } from "../context/store.js";
 import { createStatic } from "./static/index.js";
 import { isWebRequest } from "./utils.js";

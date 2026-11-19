@@ -2,7 +2,7 @@ import { createReadStream } from "node:fs";
 import { stat } from "node:fs/promises";
 import { extname, join, resolve, sep } from "node:path";
 import { Readable } from "node:stream";
-import type { Context } from "../../context/context.js";
+import type Context from "../../context/index.js";
 import { MIME } from "./mime.js";
 
 interface ServeFileOptions {

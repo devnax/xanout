@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from "node:async_hooks";
-import type { Context } from "./context.js";
+import type Context from "./index.js";
 
 // Request-scoped context. xanout is server-only: it relies on AsyncLocalStorage
 // (Node, Bun, Deno, Cloudflare Workers with nodejs_compat).
